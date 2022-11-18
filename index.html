@@ -34,8 +34,9 @@
         <div class="container mb-5 text-center">
             <h2 class="text-center m-3 text-uppercase">Portfolio</h2>
             <div id="tabellaSiti" class="row justify-content-center g-3">
+                <!-- Migrata nel JS
                 <div class="col-12 col-md-6 col-lg-4">
-                    <div class="card" style="">
+                    <div class="card">
                         <img src="img/portfolio/cabin.png" class="card-img-top" alt="...">
                         <div class="card-body">
                             <h5 class="card-title">Cabin website</h5>
@@ -94,6 +95,7 @@
                         </div>
                     </div>
                 </div>
+                -->
             </div>
         </div>
         <div class="bg-info p-4">
@@ -101,7 +103,7 @@
                 <div class="row">
                     <div class="col">
                         <h2 class="text-uppercase text-center">Want an offer?</h2>
-                        <form class="row g-3 my-3">
+                        <form id="formPreventivo" class="row g-3 my-3">
                             <div class="col-md-6">
                                 <label for="inputName" class="form-label">First name</label>
                                 <input type="text" class="form-control" id="inputName">
@@ -138,7 +140,7 @@
                                 <button type="submit" class="btn btn-outline-dark bg-warning text-black">Send</button>
                             </div>
                         </form>
-                        <h4>Il prezzo finale è di: 153.75</h4>
+                        <h4 id="totale"></h4>
                     </div>
                 </div>
             </div>
@@ -151,6 +153,7 @@
             <h3 class="text-muted pb-3 mb-0 fw-light">Copyright &copy; Ericchi 2022</h3>
         </div>
     </footer>
+    <script type="text/javascript" src="script.js"></script>
 </body>
 
 </html>
