@@ -1,12 +1,54 @@
-let prezzi = [20.50, 15.30, 33.60];
-let codiciPromo = ["YHDNU32", "JANJC63", "PWKCN25", "SJDPO96", "POCIE24"];
+const prezzi = [20.50, 15.30, 33.60];
+const codiciPromo = ["YHDNU32", "JANJC63", "PWKCN25", "SJDPO96", "POCIE24"];
 
-function calcolaForm(ore, tipo, codice){
-
+// Controllo della validità del codice sconto
+function controllaCodice(codice) {
+    let valido = false;
+    for (let i = 0; i < codiciPromo.length; i++){
+        if(codice === codiciPromo[i]){
+            codiciPromo.slice(i, 1);
+            valido = true;
+            break;
+        }
+    }
+    if(valido === false) {
+        let testoRosso = document.getElementById("inputCode")
+        testoRosso.classList.add("text-danger");
+        alert("Il codice sconto non è valido.");
+    }
+    return valido;
 }
 
+// Calcolo del prezzo finale
+function calcolaForm(ore, tipo, codice){
+    let prezzo = 0.0;
+    switch(tipo) {
+        case 'backend':
+            prezzo = prezzi[0];
+            break;
+        case 'frontend':
+            prezzo = prezzi[1];
+            break;
+        case 'analysis':
+            prezzo = prezzi[2];
+            break;
+    }
+    let scontoValido = controllaCodice(codice);
+    let calcolo = ore * prezzo;
+    if (scontoValido == true) {
+        calcolo = calcolo/100*75;
+    }
+    return calcolo;
+}
+
+// Funzione del form
 function submitForm(event){
-    event.preventDefault();
+    event.preventDefault(); // Importante
+    let ore = document.getElementById("inputHours");
+    let tipo = document.getElementById("inputType").value;
+    let codice = document.getElementById("inputCode");
+    let prezzoFinale = calcolaForm(ore, tipo, codice);
+    document.getElementById("totale").innerHTML = 'Il costo totale è: ' + prezzoFinale + '€'
 }
 
 // Pagina aggiornata dinamicamente in JS
