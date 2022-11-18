@@ -2,25 +2,29 @@ const prezzi = [20.50, 15.30, 33.60];
 const codiciPromo = ["YHDNU32", "JANJC63", "PWKCN25", "SJDPO96", "POCIE24"];
 
 // Controllo della validità del codice sconto
-function controllaCodice(codice) {
+function controllaCodice() {
     let valido = false;
-    for (let i = 0; i < codiciPromo.length; i++){
-        if(codice === codiciPromo[i]){
-            codiciPromo.slice(i, 1);
-            valido = true;
-            break;
+    let codice = document.getElementById("inputCode").value;
+    if (codice != ''){
+        console.log('sikegvniu' + codice);
+        for (let i = 0; i < codiciPromo.length; i++){
+            if(codice == codiciPromo[i]){
+                codiciPromo.splice(i, 1); // Rimozione dei codici usati
+                valido = true;
+                break;
+            }
         }
-    }
-    if(valido === false) {
-        let testoRosso = document.getElementById("inputCode")
-        testoRosso.classList.add("text-danger");
-        alert("Il codice sconto non è valido.");
+        if(valido === false) {
+            let testoRosso = document.getElementById("inputCode")
+            testoRosso.classList.add("text-danger");
+            alert("Il codice sconto non è valido.");
+        }
     }
     return valido;
 }
 
 // Calcolo del prezzo finale
-function calcolaForm(ore, tipo, codice){
+function calcolaForm(ore, tipo){
     let prezzo = 0.0;
     switch(tipo) {
         case 'backend':
@@ -33,7 +37,7 @@ function calcolaForm(ore, tipo, codice){
             prezzo = prezzi[2];
             break;
     }
-    let scontoValido = controllaCodice(codice);
+    let scontoValido = controllaCodice();
     let calcolo = ore * prezzo;
     if (scontoValido == true) {
         calcolo = calcolo/100*75;
@@ -44,11 +48,11 @@ function calcolaForm(ore, tipo, codice){
 // Funzione del form
 function submitForm(event){
     event.preventDefault(); // Importante
-    let ore = document.getElementById("inputHours");
+    let ore = document.getElementById("inputHours").value;
     let tipo = document.getElementById("inputType").value;
-    let codice = document.getElementById("inputCode");
-    let prezzoFinale = calcolaForm(ore, tipo, codice);
-    document.getElementById("totale").innerHTML = 'Il costo totale è: ' + prezzoFinale + '€'
+    
+    let prezzoFinale = calcolaForm(ore, tipo);
+    document.getElementById("totale").innerHTML = 'Il costo totale è: ' + prezzoFinale.toFixed(2) + '€'
 }
 
 // Pagina aggiornata dinamicamente in JS
