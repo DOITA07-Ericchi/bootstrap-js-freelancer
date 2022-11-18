@@ -6,7 +6,6 @@ function controllaCodice() {
     let valido = false;
     let codice = document.getElementById("inputCode").value;
     if (codice != ''){
-        console.log('sikegvniu' + codice);
         for (let i = 0; i < codiciPromo.length; i++){
             if(codice == codiciPromo[i]){
                 codiciPromo.splice(i, 1); // Rimozione dei codici usati
@@ -84,7 +83,8 @@ const sito = [ {
 
 function stampaMembro(sito){
     console.log(`Nome:  ${sito.nome}
-Foto:  ${sito.foto}`)
+Foto:  ${sito.foto}
+URL:   ${sito.urlo}`)
 }
 
 function renderizzaMembro(sito){
