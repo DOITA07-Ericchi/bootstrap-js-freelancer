@@ -1,5 +1,15 @@
+let prezzi = [20.50, 15.30, 33.60];
+let codiciPromo = ["YHDNU32", "JANJC63", "PWKCN25", "SJDPO96", "POCIE24"];
 
-// Parte che riciclerò per fare la pagina dinamica
+function calcolaForm(ore, tipo, codice){
+
+}
+
+function submitForm(event){
+    event.preventDefault();
+}
+
+// Pagina aggiornata dinamicamente in JS
 const sito = [ {
     nome: "Cabin website",
     foto: "cabin.png",
@@ -43,15 +53,6 @@ function renderizzaMembro(sito){
     </div>
     </div>
     </div>`
-}
-
-function calcolaForm(){
-
-}
-
-function submitForm(event){
-    event.preventDefault();
-    
 }
 
 for (let elemento of sito) {
